@@ -4,7 +4,9 @@ var NestedError = function (message, nested) {
     Error.call(this);
     this.nested = nested;
 
-    Error.captureStackTrace(this, this.constructor);
+    if (Error.captureStackTrace) {
+        Error.captureStackTrace(this, this.constructor);
+    }
 
     var oldStackDescriptor = Object.getOwnPropertyDescriptor(this, 'stack');
 
